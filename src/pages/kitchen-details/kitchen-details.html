@@ -1,0 +1,56 @@
+<!--
+  Generated template for the KitchenDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="bule">
+    <ion-title>{{kitchenPost.title.rendered}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <img src="{{kitchenPost._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url}}"/>
+    <ion-row class="row-center">
+        <ion-badge color="second">
+          {{api.getCatName(kitchenPost.categories[0])}}
+        </ion-badge>
+        <ion-badge color="light">
+            <ion-icon name="time"></ion-icon>
+          {{kitchenPost.date | date: "dd.MM.yyyy / hh.mm"}}
+        </ion-badge>
+    </ion-row>
+    <p [innerHTML]="kitchenPost.content.rendered" padding text-center>
+  </p>
+  <ion-title text-center>আরো {{api.getCatName(kitchenPost.categories[0])}} সম্পর্কিত খবর</ion-title>
+  <div *ngIf="isLoading" text-center padding>
+    <ion-spinner></ion-spinner>
+  </div>
+  <div padding>
+    <ion-card *ngFor="let kitchenitem of kitchenRelatedItems" (click)="openKitchenDetails(kitchenitem)">
+      <img src="{{kitchenitem._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url}}"/>
+      <ion-card-content>
+        <ion-card-title>
+          <h1 padding text-center>{{kitchenitem.title.rendered}}</h1>
+        </ion-card-title>
+            <ion-row class="row-center">
+                <ion-badge color="second">
+                  {{api.getCatName(kitchenitem.categories[0])}}
+                </ion-badge>
+                <ion-badge color="light">
+                    <ion-icon name="time"></ion-icon>
+                  {{kitchenitem.date | date: "dd.MM.yyyy / hh.mm"}}
+                </ion-badge>
+            </ion-row>
+  
+  
+        <p [innerHTML]="kitchenitem.content.rendered | truncatePipe : 100" padding text-center>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,5 +1,4 @@
-page-home {
-
+page-kitchen-details {
     ion-row.row-center {
         display: -webkit-box;
         display: -webkit-flex;
@@ -12,20 +11,4 @@ page-home {
         align-items: center;
         justify-content: center;
     }
-    ion-title.logo-wrapper {
-        width: 200px;
-        height: auto;
-        text-align: center;
-        // margin: 0 auto;
-        margin-left: 7%;
-    }
-    ion-title.logo-wrapper img {
-        margin-top:5px;
-    }
-    .scroll-content {
-        margin-top: 70px;
-    }
-
-    
-
 }
