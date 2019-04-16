@@ -60,6 +60,8 @@ export class MyApp {
     // this.nav.setRoot(HomePage, {cat_id: cat_id});
     if(cat_id == 24){
       this.nav.setRoot(KichenListingPage);
+    }else if(cat_id == 2){
+      this.nav.setRoot(KichenListingPage);
     }else{
       this.nav.setRoot(HomePage, {cat_id: cat_id});
     }

@@ -8,30 +8,78 @@
 </ion-header>
 
 <ion-content padding>
-    <h1 padding text-center>{{api.getCatName(2)}}</h1>
-  <ion-card *ngFor="let kitchenitem of kitchenitems" (click)="openKitchenDetails(kitchenitem)">
-    <img src="{{kitchenitem._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url}}"/>
-    <ion-card-content>
-      <ion-card-title>
-        <h1 padding text-center>{{kitchenitem.title.rendered}}</h1>
-      </ion-card-title>
-          <ion-row class="row-center">
-              <ion-badge color="second">
-                {{api.getCatName(kitchenitem.categories[0])}}
-              </ion-badge>
-              <ion-badge color="light">
-                  <ion-icon name="time"></ion-icon>
-                {{kitchenitem.date | date: "dd.MM.yyyy / hh.mm"}}
-              </ion-badge>
-          </ion-row>
+  <ion-grid>
+    <ion-row>
+      <ion-card>
+        <ion-slides #homeCarousel loop="true" pager>
+            <ion-slide *ngFor="let carouselItem of carouselItems">
+              <img src="{{carouselItem._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url}}"/>
+            </ion-slide>
+          </ion-slides>
+    </ion-card>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+      <ion-row>
+          <ion-slides #homeKitchenSlides loop="true" >
+              <ion-slide *ngFor="let kitchenitem of kitchenitems" (click)="openKitchenDetails(kitchenitem)">
+                <ion-card no-padding>
+                    <img src="{{kitchenitem._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url}}"/>
+                    <ion-card-content>
+                        <ion-card-title>
+                          <h1 padding text-center>{{kitchenitem.title.rendered}}</h1>
+                        </ion-card-title>
+                            <ion-row class="row-center">
+                                <ion-badge color="second">
+                                  {{api.getCatName(kitchenitem.categories[0])}}
+                                </ion-badge>
+                                <ion-badge color="light">
+                                    <ion-icon name="time"></ion-icon>
+                                  {{kitchenitem.date | date: "dd.MM.yyyy / hh.mm"}}
+                                </ion-badge>
+                            </ion-row>
+                    
+                    
+                        <p [innerHTML]="kitchenitem.content.rendered | truncatePipe : 100" padding text-center>
+                        </p>
+                      </ion-card-content>
+                </ion-card>
+              </ion-slide>
+          </ion-slides>
+      </ion-row>
+  </ion-grid>
 
+  <ion-grid>
+      <ion-row>
+          <ion-slides #homeKolkataSlides loop="true" >
+              <ion-slide *ngFor="let kolkataItem of kolkataItems" (click)="openKolkataDetails(kolkataItem)">
+                <ion-card no-padding>
+                    <img src="{{kolkataItem._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url}}"/>
+                    <ion-card-content>
+                        <ion-card-title>
+                          <h1 padding text-center>{{kolkataItem.title.rendered}}</h1>
+                        </ion-card-title>
+                            <ion-row class="row-center">
+                                <ion-badge color="second">
+                                  {{api.getCatName(kolkataItem.categories[0])}}
+                                </ion-badge>
+                                <ion-badge color="light">
+                                    <ion-icon name="time"></ion-icon>
+                                  {{kolkataItem.date | date: "dd.MM.yyyy / hh.mm"}}
+                                </ion-badge>
+                            </ion-row>
+                    
+                    
+                        <p [innerHTML]="kolkataItem.content.rendered | truncatePipe : 100" padding text-center>
+                        </p>
+                      </ion-card-content>
+                </ion-card>
+              </ion-slide>
+          </ion-slides>
+      </ion-row>
+  </ion-grid>
 
-      <p [innerHTML]="kitchenitem.content.rendered | truncatePipe : 100" padding text-center>
-      </p>
-    </ion-card-content>
-  </ion-card>
   <div *ngIf="isLoading" text-center padding>
     <ion-spinner></ion-spinner>
   </div>
-  <button *ngIf="showLoadMore" ion-button full (click)="getKitchenPosts()">Load more</button>
 </ion-content>

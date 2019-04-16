@@ -6,6 +6,7 @@ import { Network } from '@ionic-native/network';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { KitchenDetailsPage } from '../pages/kitchen-details/kitchen-details';
+import { KolkataDetailsPage } from '../pages/kolkata-details/kolkata-details';
 import { KichenListingPage } from '../pages/kichen-listing/kichen-listing';
 import { MenuPage } from '../pages/menu/menu';
 
@@ -22,6 +23,7 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     MenuPage,
     KichenListingPage,
     KitchenDetailsPage,
+    KolkataDetailsPage,
     TruncatePipe
   ],
   imports: [
@@ -36,6 +38,7 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     MenuPage,
     KichenListingPage,
     KitchenDetailsPage,
+    KolkataDetailsPage
   ],
   providers: [
     StatusBar,
