@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { KitchenDetailsPage } from '../pages/kitchen-details/kitchen-details';
 import { KolkataDetailsPage } from '../pages/kolkata-details/kolkata-details';
 import { KichenListingPage } from '../pages/kichen-listing/kichen-listing';
+import {SearchPage} from '../pages/search/search'
 import { MenuPage } from '../pages/menu/menu';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,6 +25,7 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     KichenListingPage,
     KitchenDetailsPage,
     KolkataDetailsPage,
+    SearchPage,
     TruncatePipe
   ],
   imports: [
@@ -38,6 +40,7 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     MenuPage,
     KichenListingPage,
     KitchenDetailsPage,
+    SearchPage,
     KolkataDetailsPage
   ],
   providers: [

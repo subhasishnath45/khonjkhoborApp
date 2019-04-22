@@ -6,6 +6,7 @@ import { KitchenDetailsPage } from '../kitchen-details/kitchen-details';
 import { KolkataDetailsPage } from '../kolkata-details/kolkata-details';
 import { Network } from '@ionic-native/network';
 import { errorHandler } from '@angular/platform-browser/src/browser';
+import { SearchPage } from '../search/search';
 
 @Component({
   selector: 'page-home',
@@ -32,7 +33,15 @@ export class HomePage {
 @ViewChild('homeKolkataSlides') homeKolkataSlides:Slides;
 @ViewChild('homeCarousel') homeCarousel:Slides;
 
-  constructor(public navCtrl: NavController, public api:ApiProvider,public api2:ApiProvider, public navParams:NavParams, private network:Network,public alertCtrl:AlertController,public platform:Platform, public toast:ToastController) {
+  constructor(
+    public navCtrl: NavController, 
+    public api:ApiProvider,
+    public api2:ApiProvider, 
+    public navParams:NavParams, 
+    private network:Network,
+    public alertCtrl:AlertController,
+    public platform:Platform, 
+    public toast:ToastController) {
     // watch network for a connection
     // this.network.onConnect().subscribe(()=>{
     //   this.toast.create({
@@ -174,6 +183,10 @@ export class HomePage {
       }
       this.homeKolkataSlides.slideNext();
     },6000);
+  }
+
+  openSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 
 }
