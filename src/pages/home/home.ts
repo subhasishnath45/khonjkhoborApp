@@ -7,6 +7,7 @@ import { KolkataDetailsPage } from '../kolkata-details/kolkata-details';
 import { Network } from '@ionic-native/network';
 import { errorHandler } from '@angular/platform-browser/src/browser';
 import { SearchPage } from '../search/search';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-home',
@@ -28,15 +29,17 @@ export class HomePage {
   private isLoading = false;
   private isLoading2 = false;
   private isLoadingKolkata = false;
-
+  private LoggedinUsername:any;
 @ViewChild('homeKitchenSlides') homeKitchenSlides:Slides;
 @ViewChild('homeKolkataSlides') homeKolkataSlides:Slides;
 @ViewChild('homeCarousel') homeCarousel:Slides;
+@ViewChild('welcometxt') welcometxt:any;
 
   constructor(
     public navCtrl: NavController, 
     public api:ApiProvider,
     public api2:ApiProvider, 
+    public apiKolkata:ApiProvider,
     public navParams:NavParams, 
     private network:Network,
     public alertCtrl:AlertController,
@@ -62,6 +65,8 @@ export class HomePage {
     this.getKitchenPosts();
     this.getHomeCarousels();
     this.getKolkataPosts();
+    this.LoggedinUsername = navParams.get('username');
+    // console.log("tabspage param", this.LoggedinUsername);
   }
 
   getKitchenPosts(){
@@ -94,7 +99,7 @@ export class HomePage {
     if(!this.isLoadingKolkata){
       this.isLoadingKolkata = true;
       // http://dlive.in/khobor/khonjkhobor/wp-json/wp/v2/Allkitchenposts-api?_embed&per_page=5&page=1
-      this.api.get('AllKolkataPosts-api?_embed&per_page=' + this.per_page + '&page=' + this.page).subscribe((data:any) =>{
+      this.apiKolkata.get('AllKolkataPosts-api?_embed&per_page=' + this.per_page + '&page=' + this.page).subscribe((data:any) =>{
         this.isLoadingKolkata = false;
         this.kolkataItems = this.kolkataItems.concat(data);
         // data.length will tell us how many json objects are there in our json array.
@@ -166,6 +171,9 @@ export class HomePage {
   ionViewDidLoad() {
     this.getHomeCarousels();
     setInterval(()=>{
+        document.getElementById("welcometxt").innerHTML = ''; 
+    },5000);
+    setInterval(()=>{
       if(this.homeCarousel.getActiveIndex() == this.homeCarousel.length() - 1){
         this.homeCarousel.slideTo(0);
       }
@@ -188,5 +196,5 @@ export class HomePage {
   openSearchPage(){
     this.navCtrl.push(SearchPage);
   }
-
+  
 }

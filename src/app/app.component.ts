@@ -3,7 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';ProfilePage
+import { ProfilePage } from '../pages/profile/profile';
 import { KichenListingPage } from '../pages/kichen-listing/kichen-listing';
 import { MenuPage } from '../pages/menu/menu';
 // import { ListPage } from '../pages/list/list';
@@ -23,7 +24,8 @@ export interface pageInterface{
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  // rootPage: any = HomePage;
+  rootPage: any = ProfilePage;
   pages: pageInterface[] = [
     {pageName: 'KichenListingPage',categoryID:24}
     // {pageName: 'HomePage'}

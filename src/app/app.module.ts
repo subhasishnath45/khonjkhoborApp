@@ -8,7 +8,8 @@ import { HomePage } from '../pages/home/home';
 import { KitchenDetailsPage } from '../pages/kitchen-details/kitchen-details';
 import { KolkataDetailsPage } from '../pages/kolkata-details/kolkata-details';
 import { KichenListingPage } from '../pages/kichen-listing/kichen-listing';
-import {SearchPage} from '../pages/search/search'
+import {SearchPage} from '../pages/search/search';
+import { ProfilePage } from '../pages/profile/profile';
 import { MenuPage } from '../pages/menu/menu';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { TruncatePipe } from '../pipes/truncate/truncate';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     KitchenDetailsPage,
     KolkataDetailsPage,
     SearchPage,
+    ProfilePage,
     TruncatePipe
   ],
   imports: [
@@ -41,6 +44,7 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     KichenListingPage,
     KitchenDetailsPage,
     SearchPage,
+    ProfilePage,
     KolkataDetailsPage
   ],
   providers: [
@@ -48,7 +52,8 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     Network,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiProvider
+    ApiProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}

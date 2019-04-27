@@ -6,13 +6,43 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>search</ion-title>
+  <ion-navbar color="bule">
+    <!-- <ion-title>search</ion-title> -->
+    <ion-input type="search" [(ngModel)]="searchQuery" (change)="onSearch()" placeholder="Search here...."></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="clearSearch()" *ngIf="searchQuery.length>0">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-card *ngFor="let searchItem of searchItems" (click)="openSearchDetails(searchItem)">
+    <img src="{{searchItem.featured_img_src}}"/>
+    <ion-card-content>
+        <ion-card-title>
+          <h1 padding text-center>{{searchItem.title}}</h1>
+        </ion-card-title>
+            <ion-row class="row-center">
+                <ion-badge color="second">
+                  {{searchItem.categories[0]}}
+                </ion-badge>
+                <ion-badge color="light">
+                    <ion-icon name="time"></ion-icon>
+                  {{searchItem.date}}
+                </ion-badge>
+            </ion-row>
+    
+    
+        <p [innerHTML]="searchItem.content | truncatePipe : 100" padding text-center>
+        </p>
+      </ion-card-content>
+</ion-card>
+<div *ngIf="isLoading" text-center padding>
+  <ion-spinner></ion-spinner>
+</div>
+<button *ngIf="showLoadMore" ion-button full (click)="getSearchPosts()">Load more</button>
 </ion-content>
